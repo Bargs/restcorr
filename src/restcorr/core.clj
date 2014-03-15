@@ -1,6 +1,14 @@
-(ns restcorr.core)
+(ns core
+  (:require [liberator.core :refer [resource defresource]]
+            [ring.middleware.params :refer [wrap-params]]
+            [ring.adapter.jetty :refer [run-jetty]]
+            [compojure.core :refer [defroutes ANY]]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defroutes app
+  (ANY "/" [] (resource)))
+
+(def handler
+  (-> app
+      (wrap-params)))
+
+(run-jetty #'handler {:port 3000})
