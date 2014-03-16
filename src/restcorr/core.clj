@@ -15,17 +15,9 @@
   :handle-ok (fn [ctx] (model/get-author id))
   :handle-not-acceptable "Uh, Oh, I cannot speak those languages!")
 
-
 (defroutes app
-  (ANY "/foo" [] (resource :available-media-types ["text/html"]
-                           :handle-ok (fn [ctx]
-                                        (format "<html>It's %d milliseconds since the beginning of the epoch."
-                                                (System/currentTimeMillis)))))
-  (ANY "/bar" [] (resource :available-media-types ["application/json"]
-                           :handle-ok (fn [ctx]
-                                        {:id "1234"
-                                         :name "Matt"})
-                           :handle-not-acceptable "Uh, Oh, I cannot speak those languages!"))
+  (ANY "/" [] (resource :available-media-types ["text/html"]
+                           :handle-ok (fn [ctx] "Hello, Clojure")))
   (ANY "/authors" [] author-list-resource)
   (ANY ["/authors/:id", :id #"[0-9]+"] [id] (author-resource (read-string id))))
 
