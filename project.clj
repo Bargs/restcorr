@@ -7,4 +7,5 @@
                  [liberator "0.11.0"]
                  [compojure "1.1.6"]
                  [ring/ring-core "1.2.2"]
-                 [ring/ring-jetty-adapter "1.2.2"]])
+                 [ring/ring-jetty-adapter "1.2.2"]
+                 [korma "0.3.0-RC6"]])
