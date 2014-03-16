@@ -14,8 +14,8 @@
 (defentity authors
   (entity-fields :last_name :first_name))
 
-(select authors)
+(def get-authors #(select authors))
 
-(select authors
-        (fields [:first_name :first] [:last_name :last])
-        (where {:first_name "Ariel"}))
+;; (select authors
+;;         (fields [:first_name :first] [:last_name :last])
+;;         (where {:first_name "Ariel"}))
