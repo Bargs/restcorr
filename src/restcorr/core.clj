@@ -18,5 +18,3 @@
 (def handler
   (-> app
       (wrap-params)))
-
-(run-jetty #'handler {:port 3000})

@@ -8,4 +8,6 @@
                  [compojure "1.1.6"]
                  [ring/ring-core "1.2.2"]
                  [ring/ring-jetty-adapter "1.2.2"]
-                 [korma "0.3.0-RC6"]])
+                 [korma "0.3.0-RC6"]]
+  :plugins [[lein-ring "0.8.10"]]
+  :ring {:handler restcorr.core/handler})
