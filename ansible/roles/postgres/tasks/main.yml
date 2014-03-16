@@ -1,0 +1,23 @@
+---
+- name: Install postgresql client
+  apt: pkg=postgresql-client update_cache=yes
+  sudo: yes
+
+- name: Install libpq-dev
+  apt: pkg=libpq-dev
+  sudo: yes
+
+- name: Install python adapter dependency for Ansible PostgreSQL modules
+  apt: pkg=python-psycopg2
+  sudo: yes
+
+- name: Pull pre-made postgresql container
+  command: docker pull tiokksar/postgres
+  sudo: yes
+
+- name: Run postgresql
+  command: docker run -d --name postgres -p=5432:5432 tiokksar/postgres
+  sudo: yes
+  register: command_result
+  failed_when: command_result.stderr and 'The name /postgres is already assigned' not in command_result.stderr
+  changed_when: command_result.stdout == "postgres"

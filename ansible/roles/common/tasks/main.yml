@@ -1,0 +1,15 @@
+---
+- apt: update_cache=yes
+  sudo: yes
+
+- name: Install git
+  apt: pkg=git
+  sudo: yes
+
+- name: Install python-pycurl
+  apt: pkg=python-pycurl
+  sudo: yes
+
+- name: Install python-apt
+  apt: pkg=python-apt
+  sudo: yes
