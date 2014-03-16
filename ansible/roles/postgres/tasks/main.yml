@@ -21,3 +21,6 @@
   register: command_result
   failed_when: command_result.stderr and 'The name /postgres is already assigned' not in command_result.stderr
   changed_when: command_result.stdout == "postgres"
+
+- name: Seed postgres
+  shell: PGPASSWORD=docker psql -h localhost -U docker -f /vagrant/ansible/roles/postgres/files/booktown.sql template1
