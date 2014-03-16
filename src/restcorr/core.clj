@@ -5,6 +5,11 @@
             [compojure.core :refer [defroutes ANY]]
             [restcorr [db :as model]]))
 
+(defresource author-list-resource
+  :available-media-types ["application/json"]
+  :handle-ok (fn [ctx] (model/get-authors))
+  :handle-not-acceptable "Uh, Oh, I cannot speak those languages!")
+
 (defroutes app
   (ANY "/foo" [] (resource :available-media-types ["text/html"]
                            :handle-ok (fn [ctx]
@@ -15,10 +20,7 @@
                                         {:id "1234"
                                          :name "Matt"})
                            :handle-not-acceptable "Uh, Oh, I cannot speak those languages!"))
-  (ANY "/authors" [] (resource :available-media-types ["application/json"]
-                           :handle-ok (fn [ctx]
-                                        (model/get-authors))
-                           :handle-not-acceptable "Uh, Oh, I cannot speak those languages!")))
+  (ANY "/authors" [] author-list-resource))
 
 (def handler
   (-> app
