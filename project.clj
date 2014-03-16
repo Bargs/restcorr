@@ -8,6 +8,8 @@
                  [compojure "1.1.6"]
                  [ring/ring-core "1.2.2"]
                  [ring/ring-jetty-adapter "1.2.2"]
-                 [korma "0.3.0-RC6"]]
+                 [korma "0.3.0-RC6"]
+                 [org.clojure/java.jdbc "0.2.3"]
+                 [postgresql/postgresql "8.4-702.jdbc4"]]
   :plugins [[lein-ring "0.8.10"]]
   :ring {:handler restcorr.core/handler})
