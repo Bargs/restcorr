@@ -3,16 +3,16 @@
             [ring.middleware.params :refer [wrap-params]]
             [ring.adapter.jetty :refer [run-jetty]]
             [compojure.core :refer [defroutes ANY]]
-            [restcorr [db :as model]]))
+            [restcorr [db :as db]]))
 
 (defresource author-list-resource
   :available-media-types ["application/json"]
-  :handle-ok (fn [ctx] (model/get-authors))
+  :handle-ok (fn [ctx] (db/get-authors))
   :handle-not-acceptable "Uh, Oh, I cannot speak those languages!")
 
 (defresource author-resource [id]
   :available-media-types ["application/json"]
-  :handle-ok (fn [ctx] (model/get-author id))
+  :handle-ok (fn [ctx] (db/get-author id))
   :handle-not-acceptable "Uh, Oh, I cannot speak those languages!")
 
 (defroutes app
