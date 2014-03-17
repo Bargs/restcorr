@@ -12,6 +12,7 @@
                  [org.clojure/java.jdbc "0.2.3"]
                  [postgresql/postgresql "8.4-702.jdbc4"]]
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
-                                  [cheshire "5.3.1"]]}}
+                                  [cheshire "5.3.1"]]
+                   :plugins [[com.jakemccrary/lein-test-refresh "0.3.4"]]}}
   :plugins [[lein-ring "0.8.10"]]
   :ring {:handler restcorr.core/handler})
