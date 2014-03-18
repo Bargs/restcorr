@@ -16,3 +16,9 @@
         body (parse-string (:body response) true)]
     (is (= (:status response) 200))
     (is (= (count body) 19))))
+
+(deftest delete-author-test
+  (is (= (handler (request :delete "/authors/1111"))
+         {:status 204
+          :headers {"Content-Type" "text/plain"}
+          :body nil})))

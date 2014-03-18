@@ -20,3 +20,7 @@
 (defn get-author [id]
   (first (select authors
                  (where {:id id}))))
+
+(defn delete-author [id]
+  (delete authors
+          (where {:id id})))

@@ -12,8 +12,10 @@
 
 (defresource author-resource [id]
   :available-media-types ["application/json"]
+  :allowed-methods [:get :delete]
   :handle-ok (fn [ctx] (db/get-author id))
-  :handle-not-acceptable "Uh, Oh, I cannot speak those languages!")
+  :handle-not-acceptable "Uh, Oh, I cannot speak those languages!"
+  :delete! (fn [_] (db/delete-author id)))
 
 (defroutes app
   (ANY "/" [] (resource :available-media-types ["text/html"]
