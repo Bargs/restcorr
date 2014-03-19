@@ -22,3 +22,12 @@
          {:status 204
           :headers {"Content-Type" "text/plain"}
           :body nil})))
+
+(deftest add-author-test
+  (let [response (handler (-> (request :post "/authors")
+                              (body "{\"first_name\":\"Douglas\",\"last_name\":\"Adams\"}")
+                              (content-type "application/json")))]
+    (is (= (handler (request :get "/authors/1212"))
+           {:status 200
+            :headers {"Vary" "Accept" "Content-Type" "application/json;charset=UTF-8"}
+            :body "{\"first_name\":\"Douglas\",\"last_name\":\"Adams\",\"id\":1212}"}))))

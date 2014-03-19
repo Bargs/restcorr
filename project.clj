@@ -10,7 +10,8 @@
                  [ring/ring-jetty-adapter "1.2.2"]
                  [korma "0.3.0-RC6"]
                  [org.clojure/java.jdbc "0.2.3"]
-                 [postgresql/postgresql "8.4-702.jdbc4"]]
+                 [postgresql/postgresql "8.4-702.jdbc4"]
+                 [ring-middleware-format "0.3.2"]]
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
                                   [cheshire "5.3.1"]]
                    :plugins [[com.jakemccrary/lein-test-refresh "0.3.4"]]}}

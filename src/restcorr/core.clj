@@ -1,14 +1,18 @@
 (ns restcorr.core
   (:require [liberator.core :refer [resource defresource]]
             [ring.middleware.params :refer [wrap-params]]
+            [ring.middleware.format-params :refer [wrap-restful-params]]
             [ring.adapter.jetty :refer [run-jetty]]
             [compojure.core :refer [defroutes ANY]]
             [restcorr [db :as db]]))
 
 (defresource author-list-resource
   :available-media-types ["application/json"]
+  :allowed-methods [:get :post]
   :handle-ok (fn [ctx] (db/get-authors))
-  :handle-not-acceptable "Uh, Oh, I cannot speak those languages!")
+  :handle-not-acceptable "Uh, Oh, I cannot speak those languages!"
+  :post! (fn [ctx]
+           (print (get-in ctx [:request :params]))))
 
 (defresource author-resource [id]
   :available-media-types ["application/json"]
@@ -25,4 +29,4 @@
 
 (def handler
   (-> app
-      (wrap-params)))
+      (wrap-restful-params :formats [:json-kw])))
