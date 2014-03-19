@@ -29,4 +29,5 @@
 
 (def handler
   (-> app
-      (wrap-restful-params :formats [:json-kw])))
+      (wrap-restful-params :formats [:json-kw])
+      (wrap-params)))
