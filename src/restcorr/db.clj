@@ -24,3 +24,7 @@
 (defn delete-author [id]
   (delete authors
           (where {:id id})))
+
+(defn add-author [author]
+  (insert authors
+          (values author)))

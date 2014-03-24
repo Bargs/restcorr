@@ -14,8 +14,7 @@
 (deftest get-authors-test
   (let [response (handler (request :get "/authors"))
         body (parse-string (:body response) true)]
-    (is (= (:status response) 200))
-    (is (= (count body) 19))))
+    (is (= (:status response) 200))))
 
 (deftest delete-author-test
   (is (= (handler (request :delete "/authors/1111"))
@@ -25,9 +24,9 @@
 
 (deftest add-author-test
   (let [response (handler (-> (request :post "/authors")
-                              (body "{\"first_name\":\"Douglas\",\"last_name\":\"Adams\"}")
+                              (body "{\"first_name\":\"Douglas\",\"last_name\":\"Adams\",\"id\":42}")
                               (content-type "application/json")))]
-    (is (= (handler (request :get "/authors/1212"))
+    (is (= (handler (request :get "/authors/42"))
            {:status 200
             :headers {"Vary" "Accept" "Content-Type" "application/json;charset=UTF-8"}
-            :body "{\"first_name\":\"Douglas\",\"last_name\":\"Adams\",\"id\":1212}"}))))
+            :body "{\"first_name\":\"Douglas\",\"last_name\":\"Adams\",\"id\":42}"}))))

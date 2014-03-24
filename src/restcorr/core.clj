@@ -12,7 +12,7 @@
   :handle-ok (fn [ctx] (db/get-authors))
   :handle-not-acceptable "Uh, Oh, I cannot speak those languages!"
   :post! (fn [ctx]
-           (print (get-in ctx [:request :params]))))
+           (db/add-author (get-in ctx [:request :body-params]))))
 
 (defresource author-resource [id]
   :available-media-types ["application/json"]
